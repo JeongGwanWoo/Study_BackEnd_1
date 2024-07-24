@@ -1,31 +1,40 @@
 package hello.hello_spring.service;
 
 import hello.hello_spring.domain.Member;
+import hello.hello_spring.repository.MemberRepository;
 import hello.hello_spring.repository.MemoryMemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.fail;
 
-class MemberServiceTest {
-//  단위 테스트
-    MemberService memberService;
-    MemoryMemberRepository memberRepository;
+@SpringBootTest
+@Transactional
+//    @SpringBootTest : 스프링 컨테이너와 테스트를 함께 실행한다.
+//    @Transactional : 테스트 케이스에 이 애노테이션이 있으면, 테스트 시작 전에 트랙잭션을 시작하고,
+//    테스트 완료 후에 항상 롤백한다. -> DB에 데이터가 남지 않으므로 다음 테스트에 영향을 주지 않는다.
 
-    @BeforeEach
-    public void beforeEach() {
-        memberRepository = new MemoryMemberRepository();
-        memberService = new MemberService(memberRepository);
-    }
+class MemberServiceIntegrationTest {
+//  통합 테스트
+    @Autowired MemberService memberService;
+    @Autowired MemberRepository memberRepository;
 
-    @AfterEach
-    public void afterEach() {
-        memberRepository.clearStore();
-    }
+//    @BeforeEach
+//    public void beforeEach() {
+//        memberRepository = new MemoryMemberRepository();
+//        memberService = new MemberService(memberRepository);
+//    }
+//
+//    @AfterEach
+//    public void afterEach() {
+//        memberRepository.clearStore();
+//    }
 
     @Test
     void 회원가입() {
@@ -65,13 +74,5 @@ class MemberServiceTest {
         }*/
 
         //then
-    }
-
-    @Test
-    void findMember() {
-    }
-
-    @Test
-    void findOne() {
     }
 }

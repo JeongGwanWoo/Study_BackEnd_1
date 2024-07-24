@@ -28,4 +28,5 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	//jvmArgs '-Xshare:off' //Java HotSpot(TM) 64-Bit Server VM warning 문구 해결 못했음.
 }
