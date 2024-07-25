@@ -18,6 +18,7 @@ public class MemberController {
     @Autowired
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
+        System.out.println("memberService = " + memberService.getClass());
     }
 //    DI에는 필드 주입, setter 주입, 생성자 주입 3가지 방법이 있다.
 //    의존관계가 실행중에 동적으로 변하는 경우가 거의 없으므로 생정자 주입을 권장한다.
